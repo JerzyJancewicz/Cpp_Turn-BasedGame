@@ -1,18 +1,23 @@
 #include <iostream>
-
+#include "Gra.h"
 
 /**
  * co funkcja robi
  * @param z
  * @return char // co zwraca
  */
-char wyswietl(char z){
-    return z;
-}
 
 int main(){
 
-    std::cout << " cos " << std::endl;
+    cout << "Witaj w GRZE TUROWEJ !!!!!" << endl;
+    cout << "Zeby wyjsc z gry wpisz '1' i potwierdz przyciskiem enter. " << endl;
+    cout << "Jesli masz jakies pytanie wpisz '2' i potwierdz przyciskiem enter."<< endl;
+
+    Gra gra;
+    while(gra.getCzygGramy()) {
+        gra.MenuGlowne();
+    }
+
 
     return 0;
 }
