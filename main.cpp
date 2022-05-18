@@ -1,12 +1,6 @@
 #include <iostream>
 #include "Gra.h"
 
-/**
- * co funkcja robi
- * @param z
- * @return char // co zwraca
- */
-
 int main(){
 
     cout << "Witaj w GRZE TUROWEJ !!!!!" << endl;
@@ -17,7 +11,6 @@ int main(){
     while(gra.getCzygGramy()) {
         gra.MenuGlowne();
     }
-
 
     return 0;
 }

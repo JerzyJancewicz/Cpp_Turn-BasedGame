@@ -26,11 +26,23 @@ void Gra::MenuGlowne() {
             CzygGramy = false;
             break;
         case 2:
-            cout << "pomoc" << endl;
+            Pomoc();
             break;
+        case 3:
+
         default:
             break;
     }
+}
+
+/**
+ * Funkcja wypisuje za pomocą jakich klawiszy posługuje się grą
+ */
+void Gra::Pomoc() {
+    cout << "- Wpisz '1', zeby wyjsc z gry." << endl;
+    cout << "- Wpisz '2', zeby wyswietlic pomoc." << endl << endl;
+    cout << "---------- Sterowanie ----------" << endl;
+    cout << "- Wpisz '3', zeby wybrac Zwierze" << endl;
 }
 
 /**

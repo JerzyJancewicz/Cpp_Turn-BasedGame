@@ -19,6 +19,7 @@ public:
     virtual ~Gra();
     bool getCzygGramy() const;
     void MenuGlowne();
+    void Pomoc();
 
 };
 #endif //CPP_TURN_BASEDGAME_GRA_H
