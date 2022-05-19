@@ -2,14 +2,17 @@
 #ifndef CPP_TURN_BASEDGAME_POSTACIE_H
 #define CPP_TURN_BASEDGAME_POSTACIE_H
 
-#include "Postac.h"
+#include "Animal.h"
+#include "Game.h"
+class Postacie : Animal
+        {
 
-class Postacie : Postac{
+        public:
+        //void MocSpecjalnaOffensywna();
+        //void MocSpecjalnaDefensywna();
+        Animal ChoseAnimal(char chose);
+    };
 
-public:
-    void MocSpecjalnaOffensywna();
-    void MocSpecjalnaDefensywna();
-};
 
 
 #endif //CPP_TURN_BASEDGAME_POSTACIE_H

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Gra.h"
+#include "Game.h"
 
 int main(){
 
@@ -7,9 +7,9 @@ int main(){
     cout << "Zeby wyjsc z gry wpisz '1' i potwierdz przyciskiem enter. " << endl;
     cout << "Jesli masz jakies pytanie wpisz '2' i potwierdz przyciskiem enter."<< endl;
 
-    Gra gra;
-    while(gra.getCzygGramy()) {
-        gra.MenuGlowne();
+    Game game;
+    while(game.getIsPlaying()) {
+        game.MainMenu();
     }
 
     return 0;
