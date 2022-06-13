@@ -24,3 +24,9 @@ Animal::Animal(int sila, int zrecznosc, int punktyZycia, int punktyExp) :
             };
             return tabStatystyki[Atrybut][Champion];
         }
+
+Animal::Animal() {
+
+}
+
+

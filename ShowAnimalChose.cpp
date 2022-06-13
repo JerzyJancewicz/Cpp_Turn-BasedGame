@@ -1,6 +1,8 @@
 #include "ShowAnimalChose.h"
 
 void ShowAnimalChose::show() {
+    cout << "chuj" << endl;
+
     cout << "Zenithar" << "\t\t" << "Verktrum" << endl;
     cout << "Umiejetnosc Specjalna : " << "" << "\t\t" << "Umiejetnosc Specjalna :" << "" << endl;
     cout << "Strength : " << Animal::GetStatystyki(0, 1) << "\t\t" << "Strength : " << Animal::GetStatystyki(0,2)<< endl;
@@ -42,8 +44,4 @@ void ShowAnimalChose::show() {
     cout << "Agility : " << Animal::GetStatystyki(1, 11) << "\t\t" << "Agility : " << Animal::GetStatystyki(1,12)<< endl;
     cout << "HP : " << Animal::GetStatystyki(2, 11) << "\t\t" << "HP : " << Animal::GetStatystyki(2,12)<< endl;
     cout << "Exp : " << Animal::GetStatystyki(3, 11) << "\t\t" << "Exp : " << Animal::GetStatystyki(3,12)<< endl;
-
-
-
-
 }

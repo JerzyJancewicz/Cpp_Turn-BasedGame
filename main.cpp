@@ -8,6 +8,7 @@ int main(){
     cout << "Jesli masz jakies pytanie wpisz '2' i potwierdz przyciskiem enter."<< endl;
 
     Game game;
+
     while(game.getIsPlaying()) {
         game.MainMenu();
     }

@@ -10,6 +10,8 @@ private:
 public:
     Animal(int sila, int zrecznosc, int punktyZycia, int punktyExp);
 
+    Animal();
+
     int GetStatystyki(int Atrybut, int Champion);
 
 };

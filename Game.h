@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "Animal.h"
-#include "Postacie.h"
 #include "Oponent.h"
 #include "ShowAnimalChose.h"
 #include <string>

@@ -56,6 +56,7 @@ void Game::printHelp() {
  * Funkcja, która gromadzi inne fukcje. Funkcja ta jest odpowiedzialna za rozgrywke.
  */
 void Game::Play() {
+    Animal animal;
     cout << "Wybierz postac : " << endl;
 
     ShowAnimalChose animalChose;
