@@ -7,11 +7,11 @@
 #include "Game.h"
 
 
-class ShowAnimalChose : Animal{
+class ShowAnimalChose{
 public:
-     void show();
+   static void showAllChampions();
+   static void showChampion(int x);
 
 };
-
 
 #endif //CPP_TURN_BASEDGAME_SHOWANIMALCHOSE_H

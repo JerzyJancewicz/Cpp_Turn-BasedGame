@@ -1,33 +1,24 @@
 #ifndef CPP_TURN_BASEDGAME_ANIMAL_H
 #define CPP_TURN_BASEDGAME_ANIMAL_H
-#include <string>
 #include "Game.h"
 class Animal {
 
 private:
-    int Sila, Zrecznosc, PunktyZycia, PunktyExp;
+    int strength, agility, HP, Exp;
+    int firstChamp = 16;
+    int secondChamp = 17;
+    int thirdChamp = 18;
+    int fourthChamp = 19;
+    int fifthChamp = 20;
+    int sixthChamp = 21;
 
 public:
-    Animal(int sila, int zrecznosc, int punktyZycia, int punktyExp);
 
-    Animal();
-
-    int GetStatystyki(int Atrybut, int Champion);
+    int *champTab{};
+    static std::string getAnimalName[15];
+    static int getStatistics(int attributes, int champion);
+    void chosenAnimal();
+    void checkAnimal(int x);
 
 };
-
-
-/*      a) Zenithar
-        b) Verktrum
-        c) Akadah
-        d) Nesmerus
-        e) Idore
-        f) Kanuma
-        g) Dektija
-        h) Siktura/en
-        i) Kaligna
-        j) Enogre
-        k) Djaktion
-        l) Rakshi
-*/
 #endif //CPP_TURN_BASEDGAME_ANIMAL_H

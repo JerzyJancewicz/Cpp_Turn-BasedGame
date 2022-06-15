@@ -18,8 +18,8 @@ private:
     bool isPlaying;
     int Move;
 public:
+
     Game();
-    virtual ~Game();
     bool getIsPlaying() const;
     void MainMenu();
     void printHelp();

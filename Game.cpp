@@ -1,17 +1,8 @@
 #include "Game.h"
 
-/**
- * konstruktor dla Game
- */
 Game::Game(){
     isPlaying = true;
     Move = 0;
-}
-
-/**
- * destruktor dla Game
- */
-Game::~Game(){
 }
 
 /**
@@ -22,16 +13,16 @@ void Game::MainMenu() {
     cin >> Move;
 
     switch (Move) {
-        case 0 :
+        case 1 :
             Play();
             break;
-        case 1 :
+        case 2 :
             isPlaying = false;
             break;
-        case 2:
+        case 3:
             printHelp();
             break;
-        case 3:
+        case 4:
             Oponent op;
             op.getRandomAnimal();
             break;
@@ -44,31 +35,25 @@ void Game::MainMenu() {
  * Funkcja wypisuje, za pomocą jakich klawiszy, urzytkownik posługuje się grą.
  */
 void Game::printHelp() {
-    cout << "- Wpisz '0, zeby rozpoczac gre." << endl;
-    cout << "- Wpisz '1', zeby wyjsc z gry." << endl;
-    cout << "- Wpisz '2', zeby wyswietlic pomoc." << endl << endl;
+    cout << "- Wpisz '1, zeby rozpoczac gre." << endl;
+    cout << "- Wpisz '2', zeby wyjsc z gry." << endl;
+    cout << "- Wpisz '3', zeby wyswietlic pomoc." << endl << endl;
     cout << "---------- Sterowanie ----------" << endl;
-    cout << "- Wpisz '3', zeby wybrac Zwierze" << endl;
+    cout << "- Wpisz '4', zeby wybrac Zwierze" << endl;
+    cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl;
 }
-
 
 /**
  * Funkcja, która gromadzi inne fukcje. Funkcja ta jest odpowiedzialna za rozgrywke.
  */
 void Game::Play() {
-    Animal animal;
-    cout << "Wybierz postac : " << endl;
+    ShowAnimalChose::showAllChampions();
 
-    ShowAnimalChose animalChose;
-    animalChose.show();
+    Animal animal;
+    animal.chosenAnimal();
+
 }
 
-
-
-/**
- * Getter dla bool CzygGramy.
- * @return bool
- */
 bool Game::getIsPlaying() const {
     return isPlaying;
 }
