@@ -10,9 +10,8 @@
 #include <cmath>
 #include <vector>
 
-//srand(time(NULL));
-
 using namespace std;
+
 
 class Game{
 

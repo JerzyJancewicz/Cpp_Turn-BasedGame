@@ -82,6 +82,7 @@ void ShowAnimalChose::showAllChampions() {
 }
 
 void ShowAnimalChose::showChampion(int x) {
+
     cout << endl;
     cout << Animal::getAnimalName[x] << endl;
     cout << "- Umiejetnosc Specjalna : " << "" << endl;
@@ -99,20 +100,37 @@ void ShowAnimalChose::showYourTeam(int x, int y, int z, int n, int m, int l) {
     cout << "Str :\t\t" << Animal::getStatistics(0, x) << "\t\t" << Animal::getStatistics(0,y) << "\t\t" << Animal::getStatistics(0,z) << "\t\t" << Animal::getStatistics(0,n) << "\t\t" << Animal::getStatistics(0,m) << "\t\t" << Animal::getStatistics(0,l) << endl;
     cout << "Ag  :\t\t" << Animal::getStatistics(1, x) << "\t\t" << Animal::getStatistics(1,y) << "\t\t" << Animal::getStatistics(1,z) << "\t\t" << Animal::getStatistics(1,n) << "\t\t" << Animal::getStatistics(1,m) << "\t\t" << Animal::getStatistics(1,l) << endl;
     cout << "HP  :\t\t" << Animal::getStatistics(2, x) << "\t\t" << Animal::getStatistics(2,y) << "\t\t" << Animal::getStatistics(2,z) << "\t\t" << Animal::getStatistics(2,n) << "\t\t" << Animal::getStatistics(2,m) << "\t\t" << Animal::getStatistics(2,l) << endl;
+    cout << "T   :\t\t" << ShowAnimalChose::showTypeOfAnimal(x) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(y) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(z) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(n) <<"\t\t" << ShowAnimalChose::showTypeOfAnimal(m) <<"\t\t" << ShowAnimalChose::showTypeOfAnimal(l) << endl;
+    cout << endl;
 }
 
 void ShowAnimalChose::showEnemyTeam(int x, int y, int z, int n) {
 
     cout << endl;
-    cout << "\t\t\t  "+Animal::getAnimalName[x] << " \t " << Animal::getAnimalName[y] << " \t  " << Animal::getAnimalName[z] << " \t " << Animal::getAnimalName[n] << " \t " << endl;
+    cout << "ENEMY 1.\t\t  "+Animal::getAnimalName[x] << " \t " << Animal::getAnimalName[y] << " \t  " << Animal::getAnimalName[z] << " \t " << Animal::getAnimalName[n] << " \t " << endl;
     cout << "Exp :\t\t\t\t" << Animal::getStatistics(3, x) << "\t\t" << Animal::getStatistics(3,y) << "\t\t" << Animal::getStatistics(3,z) << "\t\t" << Animal::getStatistics(3,n) << "\t\t" << endl;
     cout << "Str :\t\t\t\t" << Animal::getStatistics(0, x) << "\t\t" << Animal::getStatistics(0,y) << "\t\t" << Animal::getStatistics(0,z) << "\t\t" << Animal::getStatistics(0,n) << "\t\t" << endl;
     cout << "Ag  :\t\t\t\t" << Animal::getStatistics(1, x) << "\t\t" << Animal::getStatistics(1,y) << "\t\t" << Animal::getStatistics(1,z) << "\t\t" << Animal::getStatistics(1,n) << "\t\t" << endl;
     cout << "HP  :\t\t\t\t" << Animal::getStatistics(2, x) << "\t\t" << Animal::getStatistics(2,y) << "\t\t" << Animal::getStatistics(2,z) << "\t\t" << Animal::getStatistics(2,n) << "\t\t" << endl;
+    cout << "T   :\t\t\t\t" << ShowAnimalChose::showTypeOfAnimal(x) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(y) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(z) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(n) << endl;
 }
 
-void ShowAnimalChose::showTypeOfAnimal(int x, int y, int z, int n, int m, int l) {
-    if(Animal::getStatistics(4,x) == 1){
-        cout << "T   :\t\t\t\t" << Animal::getAnimalTypeName[1]<<endl;
+std::string ShowAnimalChose::showTypeOfAnimal(int x) {
+
+    switch ((int)Animal::getStatistics(4,x)) {
+        case 1:
+            return Animal::getAnimalTypeName[0];
+        case 2:
+            return Animal::getAnimalTypeName[1];
+        case 3:
+            return Animal::getAnimalTypeName[2];
+        case 4:
+            return Animal::getAnimalTypeName[3];
+        case 5:
+            return Animal::getAnimalTypeName[4];
+        case 6:
+            return Animal::getAnimalTypeName[5];
+        default:
+            break;
     }
 }

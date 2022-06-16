@@ -1,5 +1,6 @@
 #include "Oponent.h"
 
+
     /**
      * Funkcja inicjuje 4 niepowtarzające się losowe liczby i wyświetla 4 postacie
      */
@@ -9,6 +10,18 @@
         randNumber2 = rand() % 16;
         randNumber3 = rand() % 16;
         randNumber4 = rand() % 16;
+
+        /*count = 0;
+        while(count != 4){
+            randNumber1 = rand() % 15;
+            if(visited[count] == 0){
+                visited[count] == 1;
+                count++;
+                storedRandoms[count++] = randNumber1;
+            }
+            count++;
+        }*/
+
 
         if (randNumber1 == randNumber2 || randNumber1 == randNumber3 || randNumber1 == randNumber4) {
             while (randNumber1 != randNumber2 && randNumber1 != randNumber3 && randNumber1 != randNumber4) {

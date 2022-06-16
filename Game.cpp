@@ -56,6 +56,7 @@ void Game::Play() {
     ShowAnimalChose::showAllChampions();
     arena.choseAnimal();
     arena.showArena();
+    arena.fight();
 
 }
 

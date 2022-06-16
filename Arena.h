@@ -9,8 +9,18 @@
 class Arena{
 private :
     int tmp;
+    int tmp1;
+    int tmp2;
+    int tmp3;
+    int tmp4;
     int champTab[6];
+    int selectChamp;
+    int yourMove;
+    int selectOpponent;
+
+
 public:
+
     void choseAnimal();
     void showArena();
     void checkAnimal(int x);

@@ -9,6 +9,9 @@ public :
     int getRandomAnimal(int x);
 
 private:
+    int count;
+    int visited[15];
+    int storedRandoms[4];
     int randNumber1;
     int randNumber2;
     int randNumber3;
