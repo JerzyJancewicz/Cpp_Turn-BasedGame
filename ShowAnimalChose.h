@@ -11,7 +11,9 @@ class ShowAnimalChose{
 public:
    static void showAllChampions();
    static void showChampion(int x);
-
+   static void showYourTeam(int x, int y, int z,int n, int m, int l);
+   static void showEnemyTeam(int x, int y, int z, int n);
+   void showTypeOfAnimal(int x, int y, int z,int n, int m, int l);
 };
 
 #endif //CPP_TURN_BASEDGAME_SHOWANIMALCHOSE_H

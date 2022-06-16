@@ -3,12 +3,12 @@
     /**
      * Funkcja inicjuje 4 niepowtarzające się losowe liczby i wyświetla 4 postacie
      */
-    void Oponent::getRandomAnimal() {
+    int Oponent::getRandomAnimal(int x) {
         // nie dziala jak powinno
-        int randNumber1 = rand() % 16;
-        int randNumber2 = rand() % 16;
-        int randNumber3 = rand() % 16;
-        int randNumber4 = rand() % 16;
+        randNumber1 = rand() % 16;
+        randNumber2 = rand() % 16;
+        randNumber3 = rand() % 16;
+        randNumber4 = rand() % 16;
 
         if (randNumber1 == randNumber2 || randNumber1 == randNumber3 || randNumber1 == randNumber4) {
             while (randNumber1 != randNumber2 && randNumber1 != randNumber3 && randNumber1 != randNumber4) {
@@ -23,15 +23,16 @@
                 randNumber3 = rand() % 16;
             }
         }
-
-        ShowAnimalChose::showChampion(randNumber1);
-        cout << endl;
-        ShowAnimalChose::showChampion(randNumber2);
-        cout << endl;
-        ShowAnimalChose::showChampion(randNumber3);
-        cout << endl;
-        ShowAnimalChose::showChampion(randNumber4);
-        cout << endl;
+        if(x == 1){
+            return randNumber1;
+        } else if(x == 2){
+            return randNumber2;
+        } else if(x == 3){
+            return randNumber3;
+        } else {
+            return randNumber4;
+        }
     }
+
 
 

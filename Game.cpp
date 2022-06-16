@@ -8,6 +8,8 @@ Game::Game(){
 /**
  * Funckja pozwala na wybór różnych opcji przez gracza.
  */
+
+
 void Game::MainMenu() {
 
     cin >> Move;
@@ -23,8 +25,7 @@ void Game::MainMenu() {
             printHelp();
             break;
         case 4:
-            Oponent op;
-            op.getRandomAnimal();
+
             break;
         default:
             break;
@@ -47,10 +48,14 @@ void Game::printHelp() {
  * Funkcja, która gromadzi inne fukcje. Funkcja ta jest odpowiedzialna za rozgrywke.
  */
 void Game::Play() {
-    ShowAnimalChose::showAllChampions();
-
+    Oponent op;
     Animal animal;
-    animal.chosenAnimal();
+    Arena arena;
+
+
+    ShowAnimalChose::showAllChampions();
+    arena.choseAnimal();
+    arena.showArena();
 
 }
 

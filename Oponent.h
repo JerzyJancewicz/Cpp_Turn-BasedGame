@@ -6,8 +6,13 @@
 class Oponent {
 
 public :
-    void getRandomAnimal();
+    int getRandomAnimal(int x);
 
+private:
+    int randNumber1;
+    int randNumber2;
+    int randNumber3;
+    int randNumber4;
 };
 
 

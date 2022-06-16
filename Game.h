@@ -5,8 +5,10 @@
 #include "Animal.h"
 #include "Oponent.h"
 #include "ShowAnimalChose.h"
+#include "Arena.h"
 #include <string>
 #include <cmath>
+#include <vector>
 
 //srand(time(NULL));
 
