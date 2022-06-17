@@ -7,15 +7,17 @@ class Oponent {
 
 public :
     int getRandomAnimal(int x);
-
+    int randNumberF1(int x);
+    bool endLoop = true;
 private:
     int count;
-    int visited[15];
-    int storedRandoms[4];
     int randNumber1;
     int randNumber2;
     int randNumber3;
     int randNumber4;
+    int randNumberF2(int x);
+    int randNumberF3(int x);
+    int randNumberF4(int x);
 };
 
 

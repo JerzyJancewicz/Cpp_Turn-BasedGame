@@ -16,15 +16,13 @@ private :
     int selectChamp;
     int yourMove;
     int selectOpponent;
-    bool isFighting;
-
-
 
 public:
+
+    bool isFighting = true;
     int champTab[6];
     static bool isAlive;
     void choseAnimal();
-    void showArena();
     void checkAnimal(int x);
     void fight();
     void checkFight(int x);
