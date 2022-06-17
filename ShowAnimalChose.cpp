@@ -43,7 +43,7 @@ void ShowAnimalChose::showYourTeam(int x, int y, int z, int n, int m, int l) {
     cout << "Exp :\t\t" << Animal::getStatistics(3, x) << "\t\t" << Animal::getStatistics(3,y) << "\t\t" << Animal::getStatistics(3,z) << "\t\t" << Animal::getStatistics(3,n) << "\t\t" << Animal::getStatistics(3,m) << "\t\t" << Animal::getStatistics(3,l) << endl;
     cout << "Str :\t\t" << Animal::getStatistics(0, x) << "\t\t" << Animal::getStatistics(0,y) << "\t\t" << Animal::getStatistics(0,z) << "\t\t" << Animal::getStatistics(0,n) << "\t\t" << Animal::getStatistics(0,m) << "\t\t" << Animal::getStatistics(0,l) << endl;
     cout << "Ag  :\t\t" << Animal::getStatistics(1, x) << "\t\t" << Animal::getStatistics(1,y) << "\t\t" << Animal::getStatistics(1,z) << "\t\t" << Animal::getStatistics(1,n) << "\t\t" << Animal::getStatistics(1,m) << "\t\t" << Animal::getStatistics(1,l) << endl;
-    cout << "HP  :\t\t" << Arena::showCurrentHP(x) << "\t\t" << Arena::showCurrentHP(y) << "\t\t" << Arena::showCurrentHP(z) << "\t\t" << Arena::showCurrentHP(n) << "\t\t" << Arena::showCurrentHP(m) << "\t\t" << Arena::showCurrentHP(l) << endl;
+    cout << "HP  :\t\t" << Arena::showMyHP(x) << "\t\t" << Arena::showMyHP(y) << "\t\t" << Arena::showMyHP(z) << "\t\t" << Arena::showMyHP(n) << "\t\t" << Arena::showMyHP(m) << "\t\t" << Arena::showMyHP(l) << endl;
     cout << "T   :\t\t" << ShowAnimalChose::showTypeOfAnimal(x) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(y) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(z) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(n) <<"\t\t" << ShowAnimalChose::showTypeOfAnimal(m) <<"\t\t" << ShowAnimalChose::showTypeOfAnimal(l) << endl;
     cout << "Cnd :\t\t" << ShowAnimalChose::showIfIsAlive(x) << "\t\t" << ShowAnimalChose::showIfIsAlive(y) << "\t\t" << ShowAnimalChose::showIfIsAlive(z) << "\t\t" << ShowAnimalChose::showIfIsAlive(n) <<  "\t\t" << ShowAnimalChose::showIfIsAlive(m) << "\t\t" << ShowAnimalChose::showIfIsAlive(l) << endl;
 }
@@ -55,7 +55,7 @@ void ShowAnimalChose::showEnemyTeam(int x, int y, int z, int n) {
     cout << "Exp :\t\t\t\t" << Animal::getStatistics(3, x) << "\t\t" << Animal::getStatistics(3,y) << "\t\t" << Animal::getStatistics(3,z) << "\t\t" << Animal::getStatistics(3,n) << "\t\t" << endl;
     cout << "Str :\t\t\t\t" << Animal::getStatistics(0, x) << "\t\t" << Animal::getStatistics(0,y) << "\t\t" << Animal::getStatistics(0,z) << "\t\t" << Animal::getStatistics(0,n) << "\t\t" << endl;
     cout << "Ag  :\t\t\t\t" << Animal::getStatistics(1, x) << "\t\t" << Animal::getStatistics(1,y) << "\t\t" << Animal::getStatistics(1,z) << "\t\t" << Animal::getStatistics(1,n) << "\t\t" << endl;
-    cout << "HP  :\t\t\t\t" << Arena::showCurrentHP(x) << "\t\t" << Arena::showCurrentHP(y) << "\t\t" << Arena::showCurrentHP(z) << "\t\t" << Arena::showCurrentHP(n) << "\t\t" << endl;
+    cout << "HP  :\t\t\t\t" << Arena::showEnemyHp(x) << "\t\t" << Arena::showEnemyHp(y) << "\t\t" << Arena::showEnemyHp(z) << "\t\t" << Arena::showEnemyHp(n) << "\t\t" << endl;
     cout << "T   :\t\t\t\t" << ShowAnimalChose::showTypeOfAnimal(x) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(y) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(z) << "\t\t" << ShowAnimalChose::showTypeOfAnimal(n) << endl;
     cout << "Cnd :\t\t\t\t" << ShowAnimalChose::showIfIsAlive(x) << "\t\t" << ShowAnimalChose::showIfIsAlive(y) << "\t\t" << ShowAnimalChose::showIfIsAlive(z) << "\t\t" << ShowAnimalChose::showIfIsAlive(n) << endl;
 }

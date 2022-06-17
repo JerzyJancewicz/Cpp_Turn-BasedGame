@@ -6,18 +6,13 @@
 class Oponent {
 
 public :
-    int getRandomAnimal(int x);
-    int randNumberF1(int x);
-    bool endLoop = true;
+    void randNumberF1();
+    bool endLoop;
+    int storedRandoms[4];
 private:
     int count;
-    int randNumber1;
-    int randNumber2;
-    int randNumber3;
-    int randNumber4;
-    int randNumberF2(int x);
-    int randNumberF3(int x);
-    int randNumberF4(int x);
+    const int generateNumber = 4;
+    int randNumber;
 };
 
 

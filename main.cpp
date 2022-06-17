@@ -15,6 +15,7 @@ int main(){
     Game game;
 
     while(game.getIsPlaying()) {
+
         game.MainMenu();
     }
 

@@ -11,7 +11,11 @@ Game::Game(){
 void Game::MainMenu() {
 
     cin >> Move;
-
+    if(Move != 1 || Move != 2 || Move != 3 || Move != 4){
+        cout << "Niepoprawna wartosc" << endl;
+        cout << "Wpisz jeszcze raz : " << endl;
+        cin >> Move;
+    }
     switch (Move) {
         case 1 :
             Play();
@@ -49,7 +53,6 @@ void Game::Play() {
 
     Arena arena;
 
-
     ShowAnimalChose::showAllChampions();
     arena.choseAnimal();
     arena.fight();
@@ -58,4 +61,12 @@ void Game::Play() {
 
 bool Game::getIsPlaying() const {
     return isPlaying;
+}
+
+void Game::checkInput() {
+    if(Move != 1 || Move != 2 || Move != 3 || Move != 4){
+        cout << "Niepoprawna wartosc" << endl;
+        cout << "Wpisz jeszcze raz : " << endl;
+        cin >> Move;
+    }
 }

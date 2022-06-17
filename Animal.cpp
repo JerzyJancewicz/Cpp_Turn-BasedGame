@@ -110,8 +110,6 @@ void Animal::checkDependence(int A, int D) {
         case 1:
             switch (getStatistics(4,D)) {
                 case 1:
-                    //animalss.animals.strength;
-                    //arena.setAttack((statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2)));
                     AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 2:

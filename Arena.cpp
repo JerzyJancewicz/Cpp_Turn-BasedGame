@@ -20,6 +20,34 @@ void Arena::choseAnimal() {
 }
 
 void Arena::checkAnimal(int x) {
+    /*count = 0;
+    do {
+        randNumber = rand() % 16;
+        endLoop = true;
+        for(int i = 0; i < count; i++){
+            if(storedRandoms[i] == randNumber) {
+                endLoop = false;
+                break;
+            }
+        }
+        if(endLoop){
+            storedRandoms[count++] = randNumber;
+        }
+    } while (count < generateNumber);*/
+    /*size = 0;
+    do {
+        isFull = true;
+        for (int i = 0; i < 6; i++) {
+            if(champTab[i] == tmp){
+                isFull = false;
+                cout << "Ta postac zostala juz wybrana " << endl;
+                cout << "Wybierz ponownie";
+                cin >> champTab[x];
+            } else {
+                size ++;
+            }
+        }
+    } while (size < 6);*/
 
     for (int i = 0; i < 6; i++){
         if ((champTab[x] == champTab[i]) && (x != i)) {
@@ -31,7 +59,8 @@ void Arena::checkAnimal(int x) {
     }
 }
 
-double HPTab[15] = {150,150,125,150,100,80,125,175,125,150,150,125,250,250,150};
+double EnemyHPTab[15] = {150,150,125,150,100,80,125,175,125,150,150,125,250,250,150};
+double MyHPTab[15] = {150,150,125,150,100,80,125,175,125,150,150,125,250,250,150};
 int isAliveTab[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
 void Arena::checkFight(int x) {
@@ -45,8 +74,8 @@ void Arena::checkFight(int x) {
     if(animal.agility >= rand2){
         cout << "Damage blocked !" << endl;
     } else {
-        HPTab[selectOpponent] = HPTab[selectOpponent] - animal.AD;
-        if(HPTab[selectOpponent] <= 0){
+        EnemyHPTab[selectOpponent] = EnemyHPTab[selectOpponent] - animal.AD;
+        if(EnemyHPTab[selectOpponent] <= 0){
             isAliveTab[selectOpponent] = 0;
         }
     }
@@ -56,10 +85,11 @@ void Arena::fight() {
     cout << endl;
     cout << "ROUND 1 :" << endl;
 
-    tmp1 = opponent.randNumberF1(1);
-    tmp2 = opponent.randNumberF1(2);
-    tmp3 = opponent.randNumberF1(3);
-    tmp4 = opponent.randNumberF1(4);
+    opponent.randNumberF1();
+    tmp1 = opponent.storedRandoms[0];
+    tmp2 = opponent.storedRandoms[1];
+    tmp3 = opponent.storedRandoms[2];
+    tmp4 = opponent.storedRandoms[3];
     ShowAnimalChose::showYourTeam(champTab[0], champTab[1], champTab[2],champTab[3], champTab[4], champTab[5]);
     ShowAnimalChose::showEnemyTeam(tmp1,tmp2,tmp3,tmp4);
     cout << tmp1 << tmp2 << tmp3 << tmp4;
@@ -84,18 +114,22 @@ void Arena::fight() {
         cout << "Przeciwnik wykonal ruch" << endl;
 
         /**
-        * Sprawdza, czy wszstkie stworki zostały ogłuszone
+        * Sprawdza, czy wszyscy przeciwnicy zostali ogłuszeni
         */
         if(isAliveTab[tmp1] == 0 && isAliveTab[tmp2] == 0 && isAliveTab[tmp3] == 0 && isAliveTab[tmp4] == 0){
             isFighting = false;
         }
     }
 }
-double Arena::showCurrentHP(int x) {
-    return HPTab[x];
+double Arena::showMyHP(int x) {
+    return MyHPTab[x];
+}
+double Arena::showEnemyHp(int x) {
+    return EnemyHPTab[x];
 }
 
 int Arena::showIsAliveTab(int x) {
     return isAliveTab[x];
 }
+
 

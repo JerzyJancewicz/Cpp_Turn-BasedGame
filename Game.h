@@ -9,7 +9,6 @@
 #include <string>
 #include <cmath>
 #include <vector>
-
 using namespace std;
 
 
@@ -25,5 +24,6 @@ public:
     void MainMenu();
     void printHelp();
     void Play();
+    void checkInput();
 };
 #endif //CPP_TURN_BASEDGAME_GAME_H

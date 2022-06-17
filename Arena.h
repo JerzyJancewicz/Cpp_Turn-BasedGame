@@ -16,6 +16,8 @@ private :
     int selectChamp;
     int yourMove;
     int selectOpponent;
+    int size;
+    bool isFull;
 
 public:
 
@@ -26,7 +28,8 @@ public:
     void checkAnimal(int x);
     void fight();
     void checkFight(int x);
-    static double showCurrentHP(int x);
+    static double showMyHP(int x);
+    static double showEnemyHp(int x);
     static int showIsAliveTab(int x);
 };
 
