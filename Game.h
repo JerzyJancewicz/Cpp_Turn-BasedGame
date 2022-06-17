@@ -18,6 +18,7 @@ private:
     bool isPlaying;
     int Move;
 public:
+    int getMove() const;
 
     Game();
     bool getIsPlaying() const;

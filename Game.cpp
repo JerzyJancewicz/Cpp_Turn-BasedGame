@@ -11,10 +11,8 @@ Game::Game(){
 void Game::MainMenu() {
 
     cin >> Move;
-    if(Move != 1 || Move != 2 || Move != 3 || Move != 4){
-        cout << "Niepoprawna wartosc" << endl;
-        cout << "Wpisz jeszcze raz : " << endl;
-        cin >> Move;
+    if(Move != 1 && Move != 2 && Move != 3){
+        Move = 4;
     }
     switch (Move) {
         case 1 :
@@ -27,10 +25,10 @@ void Game::MainMenu() {
             printHelp();
             break;
         case 4:
-
+            checkInput();
             break;
         default:
-            break;
+            checkInput();
     }
 }
 
@@ -64,9 +62,10 @@ bool Game::getIsPlaying() const {
 }
 
 void Game::checkInput() {
-    if(Move != 1 || Move != 2 || Move != 3 || Move != 4){
         cout << "Niepoprawna wartosc" << endl;
         cout << "Wpisz jeszcze raz : " << endl;
-        cin >> Move;
-    }
+}
+
+int Game::getMove() const {
+    return Move;
 }

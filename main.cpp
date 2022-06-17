@@ -15,8 +15,8 @@ int main(){
     Game game;
 
     while(game.getIsPlaying()) {
-
         game.MainMenu();
+        //if(game.getMove() == [a-Z])
     }
 
     return 0;
