@@ -14,6 +14,7 @@ public:
    static void showYourTeam(int x, int y, int z,int n, int m, int l);
    static void showEnemyTeam(int x, int y, int z, int n);
    static std::string showTypeOfAnimal(int x);
+   static std::string showIfIsAlive(int x);
 };
 
 #endif //CPP_TURN_BASEDGAME_SHOWANIMALCHOSE_H

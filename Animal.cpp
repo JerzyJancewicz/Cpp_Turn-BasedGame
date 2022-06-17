@@ -13,27 +13,71 @@
          *   1 - woda, 2 - ziemia, 3 - powietrze, 4 - ogien, 5 - lód, 6 - stal
          * @return int[][]
          */
-        double Animal::getStatistics(int attributes, int champion) {
-            double statisticsTab1 [5][15]{
-                    {10,12,20,40,20,14,12,30,23,25,21,21,0,0,0},
-                    {12,25,25,23,12,52,34,52,23,54,23,12,12,0,0},
-                    {100,120,150,200,200,100,85,250,125,125,150,150,120,200,200},
-                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                    {1,4,2,1,3,2,1,3,5,5,4,4,6,6,2}
-            };
-            return statisticsTab1[attributes][champion];
-        }
+        int Animal::getStatistics(int attributes, int champion) {
+                    int statisticsTab1[5][15]{
+                            {15,20,25,20,30,40,25,15,30,30,25,30,10,10,20},
+                            {25,15,30,15,35,35,20,10,10,10,15,15,10,10,10},
+                            {150,150,125,150,100,80,125,175,125,150,150,125,250,250,150},
+                            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                            {1,4,2,1,3,2,1,3,5,5,4,4,6,6,2}
+                    };
+                    return statisticsTab1[attributes][champion];
+                }
+/*
 
-        int Animal::changeStatistics(int attributes, int champion) {
-            std::vector<std::vector<int>> vector1{
-                    {10,12,20,40,20,14,12,30,23,25,21,21,0,0,0},
-                    {12,25,25,23,12,52,34,52,23,54,23,12,12,0,0},
-                    {100,120,150,200,200,100,85,250,125,125,150,150,120,200,200},
-                    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                    {1,4,2,1,3,2,1,3,5,5,4,4,6,6,2}
-            };
-            return vector1[attributes][champion];
-        }
+enum TypeOfAnimal {WATER,EARTH,WIND,FIRE,ICE,STEEL};
+
+struct Animals{
+    //std::string name;
+    int id;
+    int strength;
+    int agility;
+    int HP;
+    int Exp;
+    TypeOfAnimal typeOfAnimal;
+};
+struct Animalss{
+    int id;
+    Animals animals;
+};
+Animals ZENITHAR {0, 15, 25, 150, 0, WATER};
+Animals VERKTRUM {1, 20, 15, 150, 0, FIRE};
+Animals AKADAH {2, 25, 30, 125, 0, EARTH};
+Animals NESMERUS {3, 20, 15, 150, 0, WATER};
+Animals IDORE {4, 30, 35, 100, 0, WIND};
+Animals KANUMA {5, 40, 35, 80, 0, EARTH};
+Animals DEKTIJA {6, 25, 20, 125, 0, WATER};
+Animals SIKTURA {7, 15, 10, 175, 0, EARTH};
+Animals KALIGNA {8, 30, 10, 125, 0, ICE};
+Animals ENOGRE {9, 30, 10, 150, 0, ICE};
+Animals DJAKTION {10, 25, 15, 150, 0, FIRE};
+Animals RAKSHI {11, 30, 15, 125, 0, FIRE};
+Animals PIGGER {12, 10, 10, 250, 0, STEEL};
+Animals ONAR {13, 10, 10, 250, 0, STEEL};
+Animals NYRAS {14, 20, 10, 150, 0, EARTH};
+
+*/
+
+//Animalss animalss {1,ZENITHAR};
+
+
+        /*Animals animalTab[15] = {
+                {0,15,25,150,0,WATER},
+                {1,20,15,150,0,FIRE},
+                2,25,30,125,0,EARTH,
+                3,20,15,150,0,WATER,
+                4,30,35,100,0,WIND,
+                5,10,10,100,0,EARTH,
+                6,25,20,125,0,WATER,
+                7,15,10,175,0,EARTH,
+                8,30,10,125,0,ICE,
+                9,30,10,150,0,ICE,
+                10,25,15,150,0,FIRE,
+                11,30,15,125,0,FIRE,
+                12,10,10,250,0,STEEL,
+                13,10,10,250,0,STEEL,
+                14,20,10,150,0,EARTH
+        };*/
 
         std::string Animal::getAnimalTypeName[6]{
                 "Water","Earth","Wind","Fire","Ice","Steel"
@@ -53,23 +97,31 @@
             "14. NYRAS   "
         };
 
-/*void Animal::checkDependence(int A, int D) {
 
-    switch ((int)getStatistics(4,A)) {
+        /**
+         * Funkcja sprawdza zależności pomiędzy typami postaci i modifikuje AD (attack damage)
+         * tak, jak zostało narzucone w zadaniu.
+         * @param A - index postaci atakującej
+         * @param D - index postaci broniącej się
+         */
+void Animal::checkDependence(int A, int D) {
+
+    switch (getStatistics(4,A)) {
         case 1:
-            switch ((int)getStatistics(4,D)) {
+            switch (getStatistics(4,D)) {
                 case 1:
-                    arena.setAttack((statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2)));
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    //animalss.animals.strength;
+                    //arena.setAttack((statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2)));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 2:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 3:
                     //no dependency
                     break;
                 case 4:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 5:
                     //no dependency
@@ -82,7 +134,7 @@
             }
             break;
         case 2:
-            switch ((int)getStatistics(4,D)) {
+            switch (getStatistics(4,D)) {
                 case 1:
                     //no dependency
                     break;
@@ -90,28 +142,28 @@
                     //no dependency
                     break;
                 case 3:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 4:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 5:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 6:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 default:
                     break;
             }
             break;
         case 3:
-            switch ((int)getStatistics(4,D)) {
+            switch (getStatistics(4,D)) {
                 case 1:
                     //no dependency
                     break;
                 case 2:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 3:
                     //no dependency
@@ -120,22 +172,22 @@
                     //no dependency
                     break;
                 case 5:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 6:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 default:
                     break;
             }
             break;
         case 4:
-            switch ((int)getStatistics(4,D)) {
+            switch (getStatistics(4,D)) {
                 case 1:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 2:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 3:
                     //no dependency
@@ -144,31 +196,31 @@
                     //no dependency
                     break;
                 case 5:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 6:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 default:
                     break;
             }
             break;
         case 5:
-            switch ((int)getStatistics(4,D)) {
+            switch ((getStatistics(4,D))) {
                 case 1:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 2:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 3:
                     //no dependency
                     break;
                 case 4:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 5:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 6:
                     //no dependency
@@ -178,28 +230,28 @@
             }
             break;
         case 6:
-            switch ((int)getStatistics(4,D)) {
+            switch (getStatistics(4,D)) {
                 case 1:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 2:
                     //no dependency
                     break;
                 case 3:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) + ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) + Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 4:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 case 5:
                     //no dependency
                     break;
                 case 6:
-                    (statisticsTab1[0][A]) = (statisticsTab1[0][A]) - ((statisticsTab1[0][A]) * (0.2));
+                    AD = Animal::getStatistics(0,A) - Animal::getStatistics(0,A) * 0.2;
                     break;
                 default:
                     break;
             }
             break;
     }
-}*/
+}

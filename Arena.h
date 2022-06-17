@@ -13,18 +13,23 @@ private :
     int tmp2;
     int tmp3;
     int tmp4;
-    int champTab[6];
     int selectChamp;
     int yourMove;
     int selectOpponent;
+    bool isFighting;
+
 
 
 public:
-
+    int champTab[6];
+    static bool isAlive;
     void choseAnimal();
     void showArena();
     void checkAnimal(int x);
     void fight();
+    void checkFight(int x);
+    static double showCurrentHP(int x);
+    static int showIsAliveTab(int x);
 };
 
 

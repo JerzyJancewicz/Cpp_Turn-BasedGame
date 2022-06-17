@@ -11,6 +11,20 @@
         randNumber3 = rand() % 16;
         randNumber4 = rand() % 16;
 
+        while ( randNumber1 != randNumber2 && randNumber2 != randNumber1 &&
+                randNumber2 != randNumber3 && randNumber3 != randNumber2 &&
+                randNumber3 != randNumber4 && randNumber4 != randNumber3)
+        {
+            randNumber1 = rand() % 16;
+            randNumber2 = rand() % 16;
+            randNumber3 = rand() % 16;
+            randNumber4 = rand() % 16;
+        }
+
+       /* while (true) {
+            if()
+        }*/
+
         /*count = 0;
         while(count != 4){
             randNumber1 = rand() % 15;
@@ -23,7 +37,7 @@
         }*/
 
 
-        if (randNumber1 == randNumber2 || randNumber1 == randNumber3 || randNumber1 == randNumber4) {
+        /*if (randNumber1 == randNumber2 || randNumber1 == randNumber3 || randNumber1 == randNumber4) {
             while (randNumber1 != randNumber2 && randNumber1 != randNumber3 && randNumber1 != randNumber4) {
                 randNumber1 = rand() % 16;
             }
@@ -35,7 +49,7 @@
             while (randNumber3 != randNumber4) {
                 randNumber3 = rand() % 16;
             }
-        }
+        }*/
         if(x == 1){
             return randNumber1;
         } else if(x == 2){
@@ -46,6 +60,3 @@
             return randNumber4;
         }
     }
-
-
-
