@@ -24,7 +24,7 @@ public:
 
     bool getIsPlaying() const;
     void MainMenu();
-    void printHelp();
+    static void printHelp(int x);
     void Play();
     void checkInput();
 };

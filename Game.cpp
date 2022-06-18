@@ -11,6 +11,7 @@ Game::Game(){
 void Game::MainMenu() {
 
     cin >> Move;
+    printHelp(Move);
     checkInput();
     switch (Move) {
         case 1 :
@@ -20,7 +21,7 @@ void Game::MainMenu() {
             isPlaying = false;
             break;
         case 3:
-            printHelp();
+            printHelp(104);
             break;
         case 4:
             break;
@@ -32,13 +33,15 @@ void Game::MainMenu() {
 /**
  * Funkcja wypisuje, za pomocą jakich klawiszy, urzytkownik posługuje się grą.
  */
-void Game::printHelp() {
-    cout << "- Wpisz '1, zeby rozpoczac gre." << endl;
-    cout << "- Wpisz '2', zeby wyjsc z gry." << endl;
-    cout << "- Wpisz '3', zeby wyswietlic pomoc." << endl << endl;
-    cout << "---------- Sterowanie ----------" << endl;
-    cout << "- Wpisz '4', zeby wybrac Zwierze" << endl;
-    cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl;
+void Game::printHelp(int x) {
+    if(x == 99) {
+        cout << "- Wpisz '1, zeby rozpoczac gre." << endl;
+        cout << "- Wpisz '2', zeby wyjsc z gry." << endl;
+        cout << "- Wpisz '3', zeby wyswietlic pomoc." << endl << endl;
+        cout << "---------- Sterowanie ----------" << endl;
+        cout << "- Wpisz '4', zeby wybrac Zwierze" << endl;
+        cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl;
+    }
 }
 
 /**
@@ -47,6 +50,7 @@ void Game::printHelp() {
 void Game::Play() {
 
     Arena arena;
+
 
     ShowAnimalChose::showAllChampions();
     arena.choseAnimal();

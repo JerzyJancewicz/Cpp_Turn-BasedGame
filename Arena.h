@@ -19,6 +19,8 @@ private :
     int selectPowerChamp;
     int count1;
     bool isFull;
+    bool isSelected;
+    int countSelected;
 
 public:
 
@@ -26,12 +28,24 @@ public:
     int turnCount;
     bool isFighting = true;
     int champTab[6] {16,17,18,19,20,21};
-    static bool isAlive;
+    int enemyChampTab[4] {16,17,18,19};
+    std::string blocked;
+
+
     void choseAnimal();
-    bool checkAnimal1(int x);
-    void checkAnimal2();
     void fight();
+
+    void checkDifficulty();
+    bool checkAnimal1(int x);
+    bool checkSelectEnemyChamp(int x);
+    bool checkSelectYourChamp(int x);
+    void checkAnimal2();
     void checkFight();
+    void checkArenaInputOpponent(int x);
+    void checkArenaYourInput(int x);
+    void checkArenaInputMove();
+    void checkUpgrade();
+
     static double showMyHP(int x);
     static double showEnemyHp(int x);
     static double showMyAgility(int x);

@@ -15,6 +15,7 @@ void Arena::choseAnimal() {
         cout << endl;
         cout << " - Wybierz " << i + 1 << " postac : " << endl;
         cin >> tmp;
+        Game::printHelp(tmp);
         checkAnimal2();
         champTab[i] = tmp;
         ShowAnimalChose::showChampion(champTab[i]);
@@ -75,11 +76,12 @@ void Arena::checkFight() {
      * funkcjonalność agility i sprawdza czy postać została ogłuszona
      */
     if(EnemyAgilityTab[selectOpponent] >= rand2){
-        cout << "Damage blocked !" << endl;
+        blocked = "Damage blocked !";
     } else {
         EnemyHPTab[selectOpponent] = EnemyHPTab[selectOpponent] - (MyADTab[selectChamp] + animal.showMyAD());
         if(EnemyHPTab[selectOpponent] <= 0){
             isAliveTab[selectOpponent] = 0;
+            MyExpTab[selectChamp] = MyExpTab[selectChamp] + 50;
         }
     }
 }
@@ -99,6 +101,11 @@ void Arena::fight() {
         tmp3 = opponent.storedRandoms[2];
         tmp4 = opponent.storedRandoms[3];
 
+        enemyChampTab[0] = tmp1;
+        enemyChampTab[1] = tmp2;
+        enemyChampTab[2] = tmp3;
+        enemyChampTab[3] = tmp4;
+
         ShowAnimalChose::showYourTeam(champTab[0], champTab[1], champTab[2], champTab[3], champTab[4], champTab[5]);
         ShowAnimalChose::showEnemyTeam(tmp1, tmp2, tmp3, tmp4);
 
@@ -107,32 +114,47 @@ void Arena::fight() {
         animal.MyHP = MyHPTab[selectChamp];
 
         while (isFighting) {
+
+            checkUpgrade();
+
             cout << endl;
             cout << "Twoj ruch : " << endl;
             cout << "Wpisz numer twojej postaci : " << endl;
             cin >> selectChamp;
+
+            checkArenaYourInput(selectChamp);
+            Game::printHelp(selectChamp);
+
             cout << "Wybierz ruch ktory chcesz wykonac" << endl;
             cout << "Wpisz '8', jesli chcesz zaatakowac" << endl;
             cout << "Wpisz '9', jesli chcesz uzyc umiejetnosci specjalnej" << endl;
             cin >> yourMove;
+
+            checkArenaInputMove();
+            Game::printHelp(yourMove);
+
             if (yourMove == 8) {
                 cout << "Wybierz przeciwnika, ktorego chcesz zaatakowac : " << endl;
                 cin >> selectOpponent;
+
+                checkArenaInputOpponent(selectOpponent);
+                Game::printHelp(selectOpponent);
                 animal.checkDependence(selectChamp, selectOpponent);
                 checkFight();
 
             } else if (yourMove == 9) {
                 cin >> selectPowerChamp;
+
+                checkArenaInputOpponent(selectOpponent);
+                Game::printHelp(selectPowerChamp);
                 powers.checkPowers(selectChamp, selectPowerChamp);
             }
-
-            /*animal.checkDependence(selectChamp, selectOpponent);
-            checkFight(selectOpponent);*/
 
             ShowAnimalChose::showYourTeam(champTab[0], champTab[1], champTab[2], champTab[3], champTab[4], champTab[5]);
             ShowAnimalChose::showEnemyTeam(tmp1, tmp2, tmp3, tmp4);
 
             cout << endl;
+            cout << blocked << endl;
             cout << "Przeciwnik wykonal ruch" << endl;
 
             /**
@@ -144,6 +166,128 @@ void Arena::fight() {
         }
     }
 }
+void Arena::checkUpgrade() {
+    if(MyExpTab[selectChamp] == 100){
+        cout << endl;
+        cout << "Twoja postac dostala awans" << endl;
+        cout << "Mozesz teraz wybrac 2 atrybuty do wzmocnienia" << endl;
+        cout << "Wpisz : 1 - [HP + 50] , 2 - [AD + 15] , 3 - [Zrecznosc + 10]" << endl;
+        cout << "Wybierz pierwszy atrybut ktory powinien zostac zwiekszony :" << endl;
+        int y;
+        int z;
+        cin >> y;
+        Game::printHelp(y);
+        cout << "Wybierz drugi atrybut ktory powinien zostac zwiekszony :" << endl;
+        cin >> z;
+        Game::printHelp(z);
+
+        if(y == 1 || z == 1){
+            MyHPTab[selectChamp] = MyHPTab[selectChamp] + 50;
+        }
+        if(y == 2 || z == 2){
+            MyADTab[selectChamp] = MyADTab[selectChamp] + 15;
+        }
+        if(y == 3 || z == 3){
+            MyAgilityTab[selectChamp] = MyAgilityTab[selectChamp] + 10;
+        }
+    }
+}
+
+void Arena::checkArenaInputOpponent(int x) {
+    isSelected = true;
+    while (isSelected) {
+        if(selectOpponent < 0 || selectOpponent > 14 ||!cin.good()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << endl;
+            cout << "Niepoprawny znak" << endl;
+            cout << "Wybierz jeszcze raz : "<< endl;
+            cin >> selectOpponent;
+        } else {
+            if(!checkSelectEnemyChamp(selectOpponent)){
+                cout << endl;
+                cout << "Przeciwnik nie wybral tej postaci " << endl;
+                cout << "Wybierz jeszcze raz : " << endl;
+                cin >> selectOpponent;
+            } else {
+                isSelected = false;
+            }
+        }
+    }
+}
+
+void Arena::checkArenaYourInput(int x) {
+    isSelected = true;
+    while (isSelected) {
+        if(selectChamp < 0 || selectChamp > 14 ||!cin.good()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << endl;
+            cout << "Niepoprawny znak" << endl;
+            cout << "Wybierz jeszcze raz : "<< endl;
+            cin >> selectChamp;
+        } else {
+            if(!checkSelectYourChamp(selectChamp)){
+                cout << endl;
+                cout << "Nie wybrales tej postaci " << endl;
+                cout << "Wybierz jeszcze raz : " << endl;
+                cin >> selectChamp;
+            } else {
+                isSelected = false;
+            }
+        }
+    }
+}
+
+void Arena::checkArenaInputMove() {
+    isSelected = true;
+    while(isSelected){
+        if(!cin.good()){
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << endl;
+            cout << "Niepoprawny znak" << endl;
+            cout << "Wpisz jeszcze raz : "<< endl;
+            cin >> yourMove;
+        } else if(yourMove != 8 && yourMove != 9) {
+                cout << endl;
+                cout << "Niedopuszcalny ruch" << endl;
+                cout << "Wybierz swoj ruch ponownie :" << endl;
+                cin >> yourMove;
+            } else {
+                isSelected = false;
+            }
+    }
+}
+
+bool Arena::checkSelectEnemyChamp(int x) {
+    countSelected = 0;
+    for(int i = 0; i < 4; i++) {
+        if (x == enemyChampTab[i]){
+            countSelected++;
+        }
+    }
+    if(countSelected > 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Arena::checkSelectYourChamp(int x) {
+    countSelected = 0;
+    for(int i = 0; i < 6; i++) {
+        if (x == champTab[i]){
+            countSelected++;
+        }
+    }
+    if(countSelected > 0){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 double Arena::showMyHP(int x) {
     return MyHPTab[x];
 }
@@ -171,6 +315,3 @@ int Arena::showEnemyExp(int x) {
 int Arena::showIsAliveTab(int x) {
     return isAliveTab[x];
 }
-
-
-
