@@ -6,9 +6,11 @@
 #include "Oponent.h"
 #include "ShowAnimalChose.h"
 #include "Arena.h"
+#include "Powers.h"
 #include <string>
 #include <cmath>
 #include <vector>
+#include <limits>
 using namespace std;
 
 
@@ -18,9 +20,8 @@ private:
     bool isPlaying;
     int Move;
 public:
-    int getMove() const;
-
     Game();
+
     bool getIsPlaying() const;
     void MainMenu();
     void printHelp();

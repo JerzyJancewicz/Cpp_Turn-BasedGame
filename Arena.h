@@ -16,20 +16,30 @@ private :
     int selectChamp;
     int yourMove;
     int selectOpponent;
-    int size;
+    int selectPowerChamp;
+    int count1;
     bool isFull;
 
 public:
 
+    int count2;
+    int turnCount;
     bool isFighting = true;
-    int champTab[6];
+    int champTab[6] {16,17,18,19,20,21};
     static bool isAlive;
     void choseAnimal();
-    void checkAnimal(int x);
+    bool checkAnimal1(int x);
+    void checkAnimal2();
     void fight();
-    void checkFight(int x);
+    void checkFight();
     static double showMyHP(int x);
     static double showEnemyHp(int x);
+    static double showMyAgility(int x);
+    static double showEnemyAgility(int x);
+    static double showMyAD(int x);
+    static double showEnemyAD(int x);
+    static int showMyExp(int x);
+    static int showEnemyExp(int x);
     static int showIsAliveTab(int x);
 };
 

@@ -6,14 +6,12 @@ Game::Game(){
 }
 
 /**
- * Funckja pozwala na wybór różnych opcji przez gracza.
+ * Funckja pozwala na wybór różnych opcji przez gracza. Sprawdza poprawny input.
  */
 void Game::MainMenu() {
 
     cin >> Move;
-    if(Move != 1 && Move != 2 && Move != 3){
-        Move = 4;
-    }
+    checkInput();
     switch (Move) {
         case 1 :
             Play();
@@ -25,10 +23,9 @@ void Game::MainMenu() {
             printHelp();
             break;
         case 4:
-            checkInput();
             break;
         default:
-            checkInput();
+            break;
     }
 }
 
@@ -55,17 +52,20 @@ void Game::Play() {
     arena.choseAnimal();
     arena.fight();
 
+
+}
+
+void Game::checkInput() {
+    if(!cin.good()){
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cout << "Niepoprawna wartosc, wpisywana wartosc musi byc liczba calkowita." << endl;
+    }
+    if(Move != 1 && Move != 2 &&Move != 3){
+        cout << "---------------------- Wpisz jeszcze raz : ----------------------" << endl;
+    }
 }
 
 bool Game::getIsPlaying() const {
     return isPlaying;
-}
-
-void Game::checkInput() {
-        cout << "Niepoprawna wartosc" << endl;
-        cout << "Wpisz jeszcze raz : " << endl;
-}
-
-int Game::getMove() const {
-    return Move;
 }
