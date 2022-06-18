@@ -2,14 +2,15 @@
 
 Oponent opponent;
 Animal animal;
-Powers powers;
 
+/**
+ * Funkcja pozwala na wybranie 6 unikalnych postaci, czasami wywala blad, ale po resecie powinno byc ok :)
+ */
 void Arena::choseAnimal() {
     cout << endl;
     cout << "------------------ Wybierz szesc postaci : ------------------" << endl;
     cout << "( Zeby wybrac postac, wpisz numer postac i potwierdz enterem )" << endl;
     cout << endl;
-
 
     for(int i = 0; i < 6; i++) {
         cout << endl;
@@ -22,6 +23,10 @@ void Arena::choseAnimal() {
     }
 }
 
+/**
+ * uzywa funkcji checkAnimal1
+ * sprawdza zgodnosc inputu, np jesli jest charem, to trzeba wpisac jeszcze raz
+ */
 void Arena::checkAnimal2() {
     isFull = true;
     while (isFull) {
@@ -45,6 +50,11 @@ void Arena::checkAnimal2() {
     }
 }
 
+/**
+ *
+ * @param x sprawdza, czy dana postac znajduje sie w tabeli, jesli tak zwraca true
+ * @return bool
+ */
 bool Arena::checkAnimal1(int x) {
     count1 = 0;
     for (int i = 0; i < 6; i++) {
@@ -58,6 +68,8 @@ bool Arena::checkAnimal1(int x) {
         return false;
     }
 }
+
+    int isMeAliveTab[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
     int isAliveTab[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
     double EnemyHPTab[15] = {150, 150, 125, 150, 100, 80, 125, 175, 125, 150, 150, 125, 250, 250, 150};
     double MyHPTab[15] = {150,150,125,150,100,80,125,175,125,150,150,125,250,250,150};
@@ -68,32 +80,43 @@ bool Arena::checkAnimal1(int x) {
     double EnemyExpTab[15] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     double MyExpTab[15] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
+
+    /**
+     * funkcja sluzaca do zadawania obrazen i do ich blokowania, jesli agility bedzie na odpowiedznim poziomie
+     */
 void Arena::checkFight() {
 
     double rand2 = rand() % 100;
 
-    /**
-     * funkcjonalność agility i sprawdza czy postać została ogłuszona
-     */
-    if(EnemyAgilityTab[selectOpponent] >= rand2){
-        blocked = "Damage blocked !";
-    } else {
-        EnemyHPTab[selectOpponent] = EnemyHPTab[selectOpponent] - (MyADTab[selectChamp] + animal.showMyAD());
-        if(EnemyHPTab[selectOpponent] <= 0){
+         if (EnemyAgilityTab[selectOpponent] >= rand2) {
+             blocked = "Przeciwnik zablokowal atak !";
+         } else {
+             EnemyHPTab[selectOpponent] = EnemyHPTab[selectOpponent] - (MyADTab[selectChamp] + animal.showMyAD());
+         }
+        if (EnemyHPTab[selectOpponent] <= 0) {
             isAliveTab[selectOpponent] = 0;
             MyExpTab[selectChamp] = MyExpTab[selectChamp] + 50;
         }
-    }
 }
 
+/**
+ * Funkcja odpowiadajaca za cala rozgrywke
+ * - Gra sklada sie z 3 rund
+ * - przyjmuje 4 randomowe liczby i przypisuje je w tablicyenemyChampTab
+ * - korzysta z wiekszosci funkcji w klasie
+ * - Sprawdza czy wygralismy i czy przegralismy rozgrywke
+ */
 void Arena::fight() {
-    count2 = 0;
-    for(int i = 0; i < 4; i++) {
-        count2++;
+    Game game;
+    roundCounter = 0;
+
+    while(roundCounter != 3) {
+        roundCounter++;
+        turnCount = 0;
         isFighting = true;
 
         cout << endl;
-        cout << "ROUND " << count2 << " :"<< endl;
+        cout << "ROUND " << roundCounter << " :"<< endl;
 
         opponent.randNumberF1();
         tmp1 = opponent.storedRandoms[0];
@@ -113,9 +136,16 @@ void Arena::fight() {
         animal.AD = MyADTab[selectChamp];
         animal.MyHP = MyHPTab[selectChamp];
 
+
         while (isFighting) {
 
             checkUpgrade();
+
+            turnCount = 0;
+            randAnimal = rand() % 4;
+            randOpponent = rand() % 6;
+            randSelectPowerChamp = rand() % 4;
+            randMove = 1;
 
             cout << endl;
             cout << "Twoj ruch : " << endl;
@@ -127,7 +157,6 @@ void Arena::fight() {
 
             cout << "Wybierz ruch ktory chcesz wykonac" << endl;
             cout << "Wpisz '8', jesli chcesz zaatakowac" << endl;
-            cout << "Wpisz '9', jesli chcesz uzyc umiejetnosci specjalnej" << endl;
             cin >> yourMove;
 
             checkArenaInputMove();
@@ -141,31 +170,63 @@ void Arena::fight() {
                 Game::printHelp(selectOpponent);
                 animal.checkDependence(selectChamp, selectOpponent);
                 checkFight();
+                turnCount++;
 
-            } else if (yourMove == 9) {
+            } /*else if (yourMove == 9) {
                 cin >> selectPowerChamp;
 
                 checkArenaInputOpponent(selectOpponent);
                 Game::printHelp(selectPowerChamp);
                 powers.checkPowers(selectChamp, selectPowerChamp);
-            }
+                turnCount++;
+                // Nie działa :(
+            }*/
 
+            /////////////// Ruch Bota
+            opponentMove();
+            turnCount++;
+            ///////////////
             ShowAnimalChose::showYourTeam(champTab[0], champTab[1], champTab[2], champTab[3], champTab[4], champTab[5]);
             ShowAnimalChose::showEnemyTeam(tmp1, tmp2, tmp3, tmp4);
 
             cout << endl;
             cout << blocked << endl;
-            cout << "Przeciwnik wykonal ruch" << endl;
 
             /**
             * Sprawdza, czy wszyscy przeciwnicy zostali ogłuszeni
             */
             if (isAliveTab[tmp1] == 0 && isAliveTab[tmp2] == 0 && isAliveTab[tmp3] == 0 && isAliveTab[tmp4] == 0) {
+                ShowAnimalChose::showYourTeam(champTab[0], champTab[1], champTab[2], champTab[3], champTab[4],
+                                              champTab[5]);
+                cout << endl;
+                cout << "---------------------------------------- You Win ----------------------------------------";
+                cout << endl;
                 isFighting = false;
+                game.setIsPlaying(false);
             }
+
+            if (isMeAliveTab[champTab[0]] == 0 && isMeAliveTab[champTab[1]] == 0 && isMeAliveTab[champTab[2]] == 0 &&
+                isMeAliveTab[champTab[3]] == 0 && isMeAliveTab[champTab[4]] == 0 && isMeAliveTab[champTab[5]] == 0) {
+                cout << endl;
+                cout << "---------------------------------------- You Lost ----------------------------------------" << endl;
+                cout << endl;
+                game.setIsPlaying(false);
+            }
+        }
+        if (isMeAliveTab[champTab[0]] == 0 && isMeAliveTab[champTab[1]] == 0 && isMeAliveTab[champTab[2]] == 0 &&
+            isMeAliveTab[champTab[3]] == 0 && isMeAliveTab[champTab[4]] == 0 && isMeAliveTab[champTab[5]] == 0) {
+            cout << endl;
+            cout << "---------------------------------------- You Lost ----------------------------------------" << endl;
+            cout << endl;
+            game.setIsPlaying(false);
         }
     }
 }
+
+/**
+ * Funkcja sprawdza, czy mozemy dokonac upgrade naszej postaci dla bota i dla gracza
+ *
+ */
 void Arena::checkUpgrade() {
     if(MyExpTab[selectChamp] == 100){
         cout << endl;
@@ -190,9 +251,69 @@ void Arena::checkUpgrade() {
         if(y == 3 || z == 3){
             MyAgilityTab[selectChamp] = MyAgilityTab[selectChamp] + 10;
         }
+        MyExpTab[selectChamp] = 0;
+    }
+    if(EnemyExpTab[randAnimal] == 100){
+         enemyRandNumber1 = rand() % 3 + 1;
+         enemyRandNumber2 = rand() % 3 + 1;
+
+        if(enemyRandNumber1 == 1 || enemyRandNumber2 == 1){
+            EnemyHPTab[randAnimal] = EnemyHPTab[randAnimal] + 50;
+            cout << endl;
+            cout << "Przeciwnik zwiekszyl zdrowie dla " <<animal.getAnimalName[randAnimal] << " o 50 pkt.";
+        }
+        if(enemyRandNumber1 == 2 || enemyRandNumber2 == 2){
+            EnemyADTab[randAnimal] = EnemyADTab[randAnimal] + 15;
+            cout << endl;
+            cout << "Przeciwnik zwiekszyl obrazenia dla " <<animal.getAnimalName[randAnimal] << " o 15 pkt.";
+        }
+        if(enemyRandNumber1 == 3 || enemyRandNumber2 == 3){
+            EnemyAgilityTab[randAnimal] = EnemyAgilityTab[randAnimal] + 10;
+            cout << endl;
+            cout << "Przeciwnik zwiekszyl zrecznosc dla " <<animal.getAnimalName[randAnimal] << " o 10 pkt.";
+        }
+        EnemyExpTab[randAnimal] = 0;
     }
 }
 
+/**
+ * funkcja pobiera randomowo wygenerowane liczby i zgodnie z ifami wykonuje ruch
+ */
+void Arena::opponentMove() {
+
+    if(randMove == 1){
+        animal.checkDependence(enemyChampTab[randAnimal], champTab[randOpponent]);
+        cout << endl;
+        cout << "Przeciwnik wykonal ruch" << endl;
+        cout << "Przeciwnik zaatakowal cie" << endl;
+        checkBotFight();
+    } else {
+//        powers.checkPowers(enemyChampTab[randAnimal], enemyChampTab[randSelectPowerChamp]);
+//        cout << "Przeciwnik wykonal ruch" << endl;
+//        cout << "Przeciwnik uzyl mocy specjalnej" << endl;
+    }
+}
+
+/**
+ * Sprawdza zadawane obrazenia przez bota i czy zostaly zablokowane
+ */
+void Arena::checkBotFight() {
+    int rand3 = rand() % 100;
+    if (MyAgilityTab[randOpponent] >= rand3) {
+        blocked = "Zablokowales atak !";
+    } else {
+        MyHPTab[randOpponent] = MyHPTab[randOpponent] - (EnemyADTab[randAnimal] + animal.showEnemyAD());
+    }
+    if (MyHPTab[randOpponent] <= 0) {
+        isMeAliveTab[randOpponent] = 0;
+        EnemyExpTab[randAnimal] = EnemyExpTab[randAnimal] + 50;
+    }
+}
+
+/**
+ * sprawdza poprawnosc wpisywanych inputow (cin opponent)
+ * @param x
+ */
 void Arena::checkArenaInputOpponent(int x) {
     isSelected = true;
     while (isSelected) {
@@ -216,6 +337,10 @@ void Arena::checkArenaInputOpponent(int x) {
     }
 }
 
+/**
+ * sprawdza poprawnosc wpisywanych inputow (cin selectChamp)
+ * @param x
+ */
 void Arena::checkArenaYourInput(int x) {
     isSelected = true;
     while (isSelected) {
@@ -238,7 +363,9 @@ void Arena::checkArenaYourInput(int x) {
         }
     }
 }
-
+/**
+ * sprawdza poprawnosc wpisywanych inputow (cin yourMove)
+ */
 void Arena::checkArenaInputMove() {
     isSelected = true;
     while(isSelected){
@@ -260,6 +387,11 @@ void Arena::checkArenaInputMove() {
     }
 }
 
+/**
+ * sprawdza czy wybrany przeciwnik przy ataku zostal wylosowany w rundzie
+ * @param x
+ * @return bool
+ */
 bool Arena::checkSelectEnemyChamp(int x) {
     countSelected = 0;
     for(int i = 0; i < 4; i++) {
@@ -274,6 +406,11 @@ bool Arena::checkSelectEnemyChamp(int x) {
     }
 }
 
+/**
+ * sprawdza czy wybrana postac przy ataku zostala wybrana w rozgrywce
+ * @param x
+ * @return bool
+ */
 bool Arena::checkSelectYourChamp(int x) {
     countSelected = 0;
     for(int i = 0; i < 6; i++) {
@@ -314,4 +451,7 @@ int Arena::showEnemyExp(int x) {
 }
 int Arena::showIsAliveTab(int x) {
     return isAliveTab[x];
+}
+int Arena::showTurnCount() {
+    return turnCount;
 }

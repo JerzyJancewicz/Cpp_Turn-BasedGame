@@ -23,8 +23,6 @@ void Game::MainMenu() {
         case 3:
             printHelp(104);
             break;
-        case 4:
-            break;
         default:
             break;
     }
@@ -38,9 +36,14 @@ void Game::printHelp(int x) {
         cout << "- Wpisz '1, zeby rozpoczac gre." << endl;
         cout << "- Wpisz '2', zeby wyjsc z gry." << endl;
         cout << "- Wpisz '3', zeby wyswietlic pomoc." << endl << endl;
-        cout << "---------- Sterowanie ----------" << endl;
+        cout << "------------------------ Sterowanie ------------------------" << endl;
         cout << "- Wpisz '4', zeby wybrac Zwierze" << endl;
-        cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl;
+        cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl << endl;
+        cout << "-------------------------- W grze --------------------------" << endl;
+        cout << "Jesli zwiekszasz atrybut wpisz : " << endl;
+        cout << "Wpisz : '1' - [HP + 50] , '2' - [AD + 15] , '3' - [Zrecznosc + 10]" << endl;
+        cout << "Wpisz : '8', zeby wybrac atak";
+
     }
 }
 
@@ -59,6 +62,9 @@ void Game::Play() {
 
 }
 
+/**
+ * Sprawdza, czy gracz wpisal dobry input i czy nie byl inny od inta
+ */
 void Game::checkInput() {
     if(!cin.good()){
         cin.clear();
@@ -72,4 +78,8 @@ void Game::checkInput() {
 
 bool Game::getIsPlaying() const {
     return isPlaying;
+}
+
+void Game::setIsPlaying(bool isPlaying) {
+    Game::isPlaying = isPlaying;
 }

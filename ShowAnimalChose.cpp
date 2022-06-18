@@ -1,5 +1,8 @@
 #include "ShowAnimalChose.h"
 
+/**
+ * Wyswietla postacie do wyboru
+ */
 void ShowAnimalChose::showAllChampions() {
 
     for(int i = 0; i < 15; i ++){
@@ -20,11 +23,14 @@ void ShowAnimalChose::showAllChampions() {
                 cout << "\t\t- Agility : " << Animal::getStatistics(1, i) << endl;
                 cout << "\t\t- HP : " << Animal::getStatistics(2, i) << endl;
                 cout << "\t\t- Exp : " << Animal::getStatistics(3, i) << endl;
-
         }
     }
 }
 
+/**
+ * wyswietle wybraną przez param x postac
+ * @param x
+ */
 void ShowAnimalChose::showChampion(int x) {
 
     cout << "\t" <<Animal::getAnimalName[x] << endl;
@@ -35,6 +41,15 @@ void ShowAnimalChose::showChampion(int x) {
     cout << "   - Exp : " << Animal::getStatistics(3, x) << endl;
 }
 
+/**
+ * pobiera 6 parametrow (wybranych przez gracza postaci) i je wyswietla w odpowiedni sposob
+ * @param x
+ * @param y
+ * @param z
+ * @param n
+ * @param m
+ * @param l
+ */
 void ShowAnimalChose::showYourTeam(int x, int y, int z, int n, int m, int l) {
 
     cout << endl;
@@ -47,6 +62,13 @@ void ShowAnimalChose::showYourTeam(int x, int y, int z, int n, int m, int l) {
     cout << "Cnd :\t\t" << ShowAnimalChose::showIfIsAlive(x) << "\t\t" << ShowAnimalChose::showIfIsAlive(y) << "\t\t" << ShowAnimalChose::showIfIsAlive(z) << "\t\t" << ShowAnimalChose::showIfIsAlive(n) <<  "\t\t" << ShowAnimalChose::showIfIsAlive(m) << "\t\t" << ShowAnimalChose::showIfIsAlive(l) << endl;
 }
 
+/**
+ * pobiera 4 parametry (wylosowanych przez komputer postaci) i odpowiednio je wyswietla
+ * @param x
+ * @param y
+ * @param z
+ * @param n
+ */
 void ShowAnimalChose::showEnemyTeam(int x, int y, int z, int n) {
     Arena arena;
 
@@ -61,6 +83,11 @@ void ShowAnimalChose::showEnemyTeam(int x, int y, int z, int n) {
 
 }
 
+/**
+ * zwraca w zaleznosci od parametru typ danej postaci
+ * @param x
+ * @return
+ */
 std::string ShowAnimalChose::showTypeOfAnimal(int x) {
 
     switch ((int)Animal::getStatistics(4,x)) {
@@ -82,6 +109,11 @@ std::string ShowAnimalChose::showTypeOfAnimal(int x) {
     return 0;
 }
 
+/**
+ * pokazuje czy dana postac jest ogluszona czy zyje
+ * @param x
+ * @return
+ */
 std::string ShowAnimalChose::showIfIsAlive(int x) {
     if(Arena::showIsAliveTab(x) == 0){
         return "[Dead]";

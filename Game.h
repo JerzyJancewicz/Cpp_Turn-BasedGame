@@ -6,7 +6,6 @@
 #include "Oponent.h"
 #include "ShowAnimalChose.h"
 #include "Arena.h"
-#include "Powers.h"
 #include <string>
 #include <cmath>
 #include <vector>
@@ -22,6 +21,7 @@ private:
 public:
     Game();
 
+    void setIsPlaying(bool isPlaying);
     bool getIsPlaying() const;
     void MainMenu();
     static void printHelp(int x);

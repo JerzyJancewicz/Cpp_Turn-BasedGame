@@ -58,8 +58,7 @@
 void Animal::checkDependence(int A, int D) {
     Arena arena;
     int x;
-    arena.turnCount = 1;
-    if(arena.turnCount % 2 != 0) {
+    if(arena.showTurnCount() % 2 == 0) {
         x = whoseTurnTab[0];
     } else {
         x = whoseTurnTab[1];

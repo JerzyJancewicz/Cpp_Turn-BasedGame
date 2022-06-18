@@ -22,10 +22,18 @@ private :
     bool isSelected;
     int countSelected;
 
+// Enemy turn
+    int enemyRandNumber1;
+    int enemyRandNumber2;
+    int turnCount;
+    int randAnimal;
+    int randOpponent;
+    int randSelectPowerChamp;
+    int randMove;
+//randMove = rand() % 2;
 public:
 
-    int count2;
-    int turnCount;
+    int roundCounter;
     bool isFighting = true;
     int champTab[6] {16,17,18,19,20,21};
     int enemyChampTab[4] {16,17,18,19};
@@ -34,13 +42,15 @@ public:
 
     void choseAnimal();
     void fight();
+    void opponentMove();
 
-    void checkDifficulty();
+    //void checkDifficulty();
     bool checkAnimal1(int x);
     bool checkSelectEnemyChamp(int x);
     bool checkSelectYourChamp(int x);
     void checkAnimal2();
     void checkFight();
+    void checkBotFight();
     void checkArenaInputOpponent(int x);
     void checkArenaYourInput(int x);
     void checkArenaInputMove();
@@ -55,6 +65,11 @@ public:
     static int showMyExp(int x);
     static int showEnemyExp(int x);
     static int showIsAliveTab(int x);
+    /*int showEnemyChampTab(int x);
+    int showChampTab(int x);*/
+    int showTurnCount();
+    /*int showRandAnimal();
+    int showRandOpponent();*/
 };
 
 
