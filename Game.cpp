@@ -35,7 +35,7 @@ void Game::printHelp(int x) {
     if(x == 99) {
         cout << "- Wpisz '1, zeby rozpoczac gre." << endl;
         cout << "- Wpisz '2', zeby wyjsc z gry." << endl;
-        cout << "- Wpisz '3', zeby wyswietlic pomoc." << endl << endl;
+        cout << "- Wpisz '99', zeby wyswietlic pomoc." << endl << endl;
         cout << "------------------------ Sterowanie ------------------------" << endl;
         cout << "- Wpisz '4', zeby wybrac Zwierze" << endl;
         cout << "Zeby wybrac postac, wpisz numer postaci i potwierdz enterem" << endl << endl;
