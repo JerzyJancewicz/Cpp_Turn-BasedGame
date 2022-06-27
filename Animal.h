@@ -10,11 +10,9 @@ public:
     double HP;
     double Exp;
     double agility;
-    //int MyAD;
     double MyHP;
     double MyAgility;
     int MyExp;
-    //int EnemyAD;
     double EnemyHP;
     double EnemyExp;
     static std::string getAnimalName[15];
